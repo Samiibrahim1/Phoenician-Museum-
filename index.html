@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Phoenician Alphabet Museum - a web recreation of the illustrated Illustrator pages."
+    />
+    <title>Phoenician Alphabet Museum</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js?v=20260713b" defer></script>
+  </head>
+  <body>
+    <!--<header class="shell-header">
+      <div class="shell-header__inner">
+        <a class="brand" href="#home" aria-label="Phoenician Alphabet Museum home">
+          <span class="brand__mark">𐤀</span>
+          <span class="brand__copy">
+            <strong>Alphabet</strong>
+            <span>Phoenician Museum</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Section navigation">
+          <button class="nav__item is-active" type="button" data-target="#home">Home</button>
+          <button class="nav__item" type="button" data-target="#alphabet">Alphabet</button>
+          <button class="nav__item" type="button" data-target="#evolution-1">Evolution I</button>
+          <button class="nav__item" type="button" data-target="#evolution-2">Evolution II</button>
+          <button class="nav__item" type="button" data-target="#meaning-1">Meaning I</button>
+          <button class="nav__item" type="button" data-target="#meaning-2">Meaning II</button>
+          <button class="nav__item" type="button" data-target="#quiz">Quiz</button>
+        </nav>
+
+        <div class="shell-header__meta" aria-hidden="true">
+          <span>7 panels</span>
+          <span>Illustrator export</span>
+        </div>
+      </div>
+    </header>-->
+
+    <button class="translate-btn" id="translateBtn" aria-label="Toggle Arabic translation" title="English / العربية">EN/AR</button>
+
+    <main class="exhibit">
+      <section class="page" id="home" data-label="Home">
+        <div class="page__frame page__frame--hero">
+          <img
+            class="page__image"
+            src="./assets/pages/page-1n.png"
+            alt="Home page of the Phoenician Alphabet Museum with the Discover the Origins of Letters hero panel"
+            loading="eager"
+            decoding="async"
+          />
+
+          <div class="hero-hotspots" aria-label="Home hero navigation">
+            <button class="hero-hotspot hero-hotspot--home" type="button" data-target="#home" aria-label="Home"></button>
+            <button class="hero-hotspot hero-hotspot--explore" type="button" data-target="#explore-page" data-target-en="#explore-page" data-target-ar="#alphabet" data-single-page="true" aria-label="Explore"></button>
+            <button class="hero-hotspot hero-hotspot--stories" type="button" data-target="#stories-page" data-target-en="#stories-page" data-target-ar="#meaning-1" data-single-page="true" aria-label="Stories"></button>
+            <button class="hero-hotspot hero-hotspot--evolution" type="button" data-target="#giftshop-page" data-target-en="#giftshop-page" data-target-ar="#evolution-1" data-single-page="true" aria-label="Gift Shop"></button>
+            <button class="hero-hotspot hero-hotspot--about" type="button" data-target="#quiz" aria-label="About"></button>
+            <button class="hero-hotspot hero-hotspot--start" type="button" data-target="#alphabet" aria-label="Start Exploring"></button>
+            <button class="hero-hotspot hero-hotspot--quiz-card" type="button" data-target="#quiz" aria-label="Quiz"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="alphabet" data-label="Alphabet">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-2.png"
+            alt="Alphabet page showing the 22 Phoenician letters"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="page" id="evolution-1" data-label="Evolution I">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-3.png"
+            alt="Evolution page showing early letter forms and the first half of the alphabet"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="page" id="evolution-2" data-label="Evolution II">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-4.png"
+            alt="Evolution page showing the remaining letters and their shape meanings"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="page" id="meaning-1" data-label="Meaning I">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-5.png"
+            alt="Meaning page showing the first set of Phoenician letters and their object meanings"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="page" id="meaning-2" data-label="Meaning II">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-6.png"
+            alt="Meaning page showing the remaining letters and their object meanings"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="page" id="quiz" data-label="Quiz">
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-7.png"
+            alt="Quiz page with multiple choice questions about the Phoenician alphabet"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="quiz-hotspots" aria-label="Quiz answer options">
+            <button class="quiz-option quiz-option--q1a" type="button" data-question="1" data-option="A" aria-label="Question 1 option A"></button>
+            <button class="quiz-option quiz-option--q1b" type="button" data-question="1" data-option="B" aria-label="Question 1 option B"></button>
+            <button class="quiz-option quiz-option--q1c" type="button" data-question="1" data-option="C" aria-label="Question 1 option C"></button>
+
+            <button class="quiz-option quiz-option--q2a" type="button" data-question="2" data-option="A" aria-label="Question 2 option A"></button>
+            <button class="quiz-option quiz-option--q2b" type="button" data-question="2" data-option="B" aria-label="Question 2 option B"></button>
+            <button class="quiz-option quiz-option--q2c" type="button" data-question="2" data-option="C" aria-label="Question 2 option C"></button>
+            <button class="quiz-option quiz-option--q2d" type="button" data-question="2" data-option="D" aria-label="Question 2 option D"></button>
+
+            <button class="quiz-option quiz-option--q3a" type="button" data-question="3" data-option="A" aria-label="Question 3 option A"></button>
+            <button class="quiz-option quiz-option--q3b" type="button" data-question="3" data-option="B" aria-label="Question 3 option B"></button>
+            <button class="quiz-option quiz-option--q3c" type="button" data-question="3" data-option="C" aria-label="Question 3 option C"></button>
+            <button class="quiz-option quiz-option--q3d" type="button" data-question="3" data-option="D" aria-label="Question 3 option D"></button>
+
+            <button class="quiz-option quiz-option--q4a" type="button" data-question="4" data-option="A" aria-label="Question 4 option A"></button>
+            <button class="quiz-option quiz-option--q4b" type="button" data-question="4" data-option="B" aria-label="Question 4 option B"></button>
+            <button class="quiz-option quiz-option--q4c" type="button" data-question="4" data-option="C" aria-label="Question 4 option C"></button>
+            <button class="quiz-option quiz-option--q4d" type="button" data-question="4" data-option="D" aria-label="Question 4 option D"></button>
+
+            <button class="quiz-option quiz-option--q5a" type="button" data-question="5" data-option="A" aria-label="Question 5 option A"></button>
+            <button class="quiz-option quiz-option--q5b" type="button" data-question="5" data-option="B" aria-label="Question 5 option B"></button>
+            <button class="quiz-option quiz-option--q5c" type="button" data-question="5" data-option="C" aria-label="Question 5 option C"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page english-extra" id="explore-page" data-label="Explore" hidden>
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-8.png"
+            alt="Explore page with additional Phoenician museum content"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="hero-hotspots" aria-label="Explore page navigation">
+            <button class="hero-hotspot hero-hotspot--home" type="button" data-target="#home" aria-label="Home"></button>
+            <button class="hero-hotspot hero-hotspot--explore" type="button" data-target="#explore-page" data-target-en="#explore-page" data-target-ar="#alphabet" data-single-page="true" aria-label="Explore"></button>
+            <button class="hero-hotspot hero-hotspot--stories" type="button" data-target="#stories-page" data-target-en="#stories-page" data-target-ar="#meaning-1" data-single-page="true" aria-label="Stories"></button>
+            <button class="hero-hotspot hero-hotspot--evolution" type="button" data-target="#giftshop-page" data-target-en="#giftshop-page" data-target-ar="#evolution-1" data-single-page="true" aria-label="Gift Shop"></button>
+            <button class="hero-hotspot hero-hotspot--about" type="button" data-target="#quiz" aria-label="About"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page english-extra" id="stories-page" data-label="Stories" hidden>
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-9.png"
+            alt="Stories page with additional Phoenician museum content"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="hero-hotspots" aria-label="Stories page navigation">
+            <button class="hero-hotspot hero-hotspot--home" type="button" data-target="#home" aria-label="Home"></button>
+            <button class="hero-hotspot hero-hotspot--explore" type="button" data-target="#explore-page" data-target-en="#explore-page" data-target-ar="#alphabet" data-single-page="true" aria-label="Explore"></button>
+            <button class="hero-hotspot hero-hotspot--stories" type="button" data-target="#stories-page" data-target-en="#stories-page" data-target-ar="#meaning-1" data-single-page="true" aria-label="Stories"></button>
+            <button class="hero-hotspot hero-hotspot--evolution" type="button" data-target="#giftshop-page" data-target-en="#giftshop-page" data-target-ar="#evolution-1" data-single-page="true" aria-label="Gift Shop"></button>
+            <button class="hero-hotspot hero-hotspot--about" type="button" data-target="#quiz" aria-label="About"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page english-extra" id="giftshop-page" data-label="Gift Shop" hidden>
+        <div class="page__frame">
+          <img
+            class="page__image"
+            src="./assets/pages/page-10.png"
+            alt="Gift shop page with additional Phoenician museum content"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="hero-hotspots" aria-label="Gift shop page navigation">
+            <button class="hero-hotspot hero-hotspot--home" type="button" data-target="#home" aria-label="Home"></button>
+            <button class="hero-hotspot hero-hotspot--explore" type="button" data-target="#explore-page" data-target-en="#explore-page" data-target-ar="#alphabet" data-single-page="true" aria-label="Explore"></button>
+            <button class="hero-hotspot hero-hotspot--stories" type="button" data-target="#stories-page" data-target-en="#stories-page" data-target-ar="#meaning-1" data-single-page="true" aria-label="Stories"></button>
+            <button class="hero-hotspot hero-hotspot--evolution" type="button" data-target="#giftshop-page" data-target-en="#giftshop-page" data-target-ar="#evolution-1" data-single-page="true" aria-label="Gift Shop"></button>
+            <button class="hero-hotspot hero-hotspot--about" type="button" data-target="#quiz" aria-label="About"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
