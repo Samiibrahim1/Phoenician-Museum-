@@ -19,6 +19,12 @@ const translations = {
 
 let isArabic = false;
 
+function showHomeOnly() {
+  sections.forEach((section) => {
+    section.hidden = section.id !== 'home';
+  });
+}
+
 function showDefaultSections() {
   sections.forEach((section) => {
     section.hidden = section.classList.contains('english-extra');
@@ -29,6 +35,54 @@ function showSingleSection(sectionId) {
   sections.forEach((section) => {
     section.hidden = section.id !== sectionId;
   });
+}
+
+function showSectionGroup(sectionIds) {
+  const visibleIds = new Set(sectionIds);
+
+  sections.forEach((section) => {
+    section.hidden = !visibleIds.has(section.id);
+  });
+}
+
+function normalizeSectionIds(sectionIds) {
+  return sectionIds
+    .filter(Boolean)
+    .map((id) => id.replace('#', ''))
+    .filter((id) => sections.some((section) => section.id === id));
+}
+
+function applyView(sectionIds, activeId) {
+  const normalized = normalizeSectionIds(sectionIds);
+
+  if (normalized.length === 0 || (normalized.length === 1 && normalized[0] === 'home')) {
+    showHomeOnly();
+    setActiveSection('home');
+    return { sectionIds: ['home'], activeId: 'home' };
+  }
+
+  if (normalized.length === 1) {
+    showSingleSection(normalized[0]);
+    setActiveSection(activeId && normalized.includes(activeId) ? activeId : normalized[0]);
+    return {
+      sectionIds: normalized,
+      activeId: activeId && normalized.includes(activeId) ? activeId : normalized[0],
+    };
+  }
+
+  showSectionGroup(normalized);
+  setActiveSection(activeId && normalized.includes(activeId) ? activeId : normalized[0]);
+  return {
+    sectionIds: normalized,
+    activeId: activeId && normalized.includes(activeId) ? activeId : normalized[0],
+  };
+}
+
+function pushNavigationState(sectionIds, activeId) {
+  const view = applyView(sectionIds, activeId);
+  const hash = `#${view.activeId}`;
+  history.pushState(view, '', hash);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateLanguageTargets() {
@@ -46,14 +100,14 @@ function toggleLanguage() {
     html.setAttribute('dir', 'rtl');
     translateBtn.classList.add('active');
     translateBtn.textContent = translations['EN/AR'];
-    showDefaultSections();
+    showHomeOnly();
     updatePageImages('ar');
   } else {
     html.setAttribute('lang', 'en');
     html.removeAttribute('dir');
     translateBtn.classList.remove('active');
     translateBtn.textContent = 'EN/AR';
-    showDefaultSections();
+    showHomeOnly();
     updatePageImages('en');
   }
 
@@ -138,15 +192,23 @@ function setActiveSection(sectionId) {
 
 navItems.forEach((item) => {
   item.addEventListener('click', () => {
+    const groupedTargets = item.dataset.targetGroup
+      ?.split(',')
+      .map((target) => target.trim().replace('#', ''))
+      .filter(Boolean);
+
+    if (groupedTargets && groupedTargets.length > 0) {
+      pushNavigationState(groupedTargets, groupedTargets[0]);
+      return;
+    }
+
     if (!isArabic && item.dataset.singlePage === 'true') {
       const sectionId = (item.dataset.target || '').replace('#', '');
       if (!sectionId) {
         return;
       }
 
-      showSingleSection(sectionId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setActiveSection(sectionId);
+      pushNavigationState([sectionId], sectionId);
       return;
     }
 
@@ -155,10 +217,33 @@ navItems.forEach((item) => {
       return;
     }
 
-    showDefaultSections();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setActiveSection(target.id);
+    if (target.id === 'home') {
+      pushNavigationState(['home'], 'home');
+      return;
+    }
+
+    pushNavigationState([target.id], target.id);
   });
+});
+
+window.addEventListener('popstate', (event) => {
+  const state = event.state;
+
+  if (state?.sectionIds) {
+    applyView(state.sectionIds, state.activeId);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
+
+  const hashTarget = location.hash.replace('#', '');
+  if (hashTarget) {
+    applyView([hashTarget], hashTarget);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
+
+  applyView(['home'], 'home');
+  window.scrollTo({ top: 0, behavior: 'instant' });
 });
 
 const observer = new IntersectionObserver(
@@ -203,9 +288,11 @@ window.addEventListener('keydown', (event) => {
 });
 
 if (sections.length > 0) {
-  setActiveSection(sections[0].id);
+  setActiveSection('home');
 }
 
-showDefaultSections();
+const initialHashTarget = location.hash.replace('#', '');
+const initialView = initialHashTarget ? applyView([initialHashTarget], initialHashTarget) : applyView(['home'], 'home');
+history.replaceState(initialView, '', `#${initialView.activeId}`);
 updateLanguageTargets();
 setupQuizSelection();

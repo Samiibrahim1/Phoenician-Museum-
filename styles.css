@@ -295,7 +295,10 @@ body::before {
 .hero-hotspot--stories,
 .hero-hotspot--about,
 .hero-hotspot--start,
-.hero-hotspot--quiz-card {
+.hero-hotspot--quiz-card,
+.hero-hotspot--alphabet-card,
+.hero-hotspot--evolution-card,
+.hero-hotspot--meaning-card {
   text-indent: -9999px;
   overflow: hidden;
   white-space: nowrap;
@@ -343,6 +346,37 @@ body::before {
   width: 13.5%;
   height: 17.7%;
   border-radius: 1.8rem;
+}
+
+.hero-hotspot--alphabet-card {
+  left: 35.8%;
+  top: 80.8%;
+  width: 13.5%;
+  height: 17.7%;
+  border-radius: 1.8rem;
+}
+
+.hero-hotspot--evolution-card {
+  left: 51.9%;
+  top: 80.8%;
+  width: 13.5%;
+  height: 17.7%;
+  border-radius: 1.8rem;
+}
+
+.hero-hotspot--meaning-card {
+  left: 65.9%;
+  top: 80.8%;
+  width: 13.5%;
+  height: 17.7%;
+  border-radius: 1.8rem;
+}
+
+.hero-hotspot--alphabet-card,
+.hero-hotspot--evolution-card,
+.hero-hotspot--meaning-card {
+  z-index: 6;
+  pointer-events: auto;
 }
 
 .quiz-hotspots {
@@ -488,6 +522,21 @@ html[lang="ar"] .hero-hotspot--start {
 html[lang="ar"] .hero-hotspot--quiz-card {
   left: auto;
   right: 82.1%;
+}
+
+html[lang="ar"] .hero-hotspot--alphabet-card {
+  left: auto;
+  right: 35.8%;
+}
+
+html[lang="ar"] .hero-hotspot--evolution-card {
+  left: auto;
+  right: 51.9%;
+}
+
+html[lang="ar"] .hero-hotspot--meaning-card {
+  left: auto;
+  right: 65.9%;
 }
 
 /* Mirror quiz options for Arabic (RTL) */
@@ -683,6 +732,24 @@ html[lang="ar"] .quiz-option--q5c {
     width: 13.8%;
     height: 17.9%;
   }
+  .hero-hotspot--alphabet-card {
+    left: 35.9%;
+    top: 80.7%;
+    width: 13.8%;
+    height: 17.9%;
+  }
+  .hero-hotspot--evolution-card {
+    left: 51.9%;
+    top: 80.7%;
+    width: 13.8%;
+    height: 17.9%;
+  }
+  .hero-hotspot--meaning-card {
+    left: 65.9%;
+    top: 80.7%;
+    width: 13.8%;
+    height: 17.9%;
+  }
 
   .quiz-option {
     width: 1.6%;
@@ -722,5 +789,20 @@ html[lang="ar"] .quiz-option--q5c {
   html[lang="ar"] .hero-hotspot--quiz-card {
     left: auto;
     right: 81.9%;
+  }
+
+  html[lang="ar"] .hero-hotspot--alphabet-card {
+    left: auto;
+    right: 35.9%;
+  }
+
+  html[lang="ar"] .hero-hotspot--evolution-card {
+    left: auto;
+    right: 51.9%;
+  }
+
+  html[lang="ar"] .hero-hotspot--meaning-card {
+    left: auto;
+    right: 65.9%;
   }
 }
